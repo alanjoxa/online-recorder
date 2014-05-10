@@ -78,6 +78,8 @@ function uploadFile(file) {
 }
 
 function toggleRecording( e ) {
+    e = e || document.querySelector("img");
+
     if (e.classList.contains("recording")) {
         // stop recording
         audioRecorder.stop();
@@ -91,6 +93,9 @@ function toggleRecording( e ) {
         audioRecorder.clear();
         audioRecorder.record();
     }
+
+    event.preventDefault();
+    return false;
 }
 
 function convertToMono( input ) {
@@ -152,9 +157,24 @@ function initAudio() {
             navigator.requestAnimationFrame = navigator.webkitRequestAnimationFrame || navigator.mozRequestAnimationFrame;
 
     navigator.getUserMedia({audio:true}, gotStream, function(e) {
-            alert('Error getting audio');
-            console.log(e);
-        });
+        alert('Error getting audio');
+        console.log(e);
+    });
+
+    var img = document.querySelector("img");
+    img.addEventListener('touchstart', function(e){
+        toggleRecording(this);
+        e.preventDefault();
+    }, false)
+
+    img.addEventListener('touchmove', function(e){
+        e.preventDefault(); return false;
+    }, false)
+
+    img.addEventListener('touchend', function(e){
+        toggleRecording(this);
+        e.preventDefault()
+    }, false)
 }
 
 window.addEventListener('load', initAudio );

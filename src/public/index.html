@@ -1,0 +1,41 @@
+
+<!doctype html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Audio Recorder</title>
+
+	<script src="recorder.js"></script>
+	<script src="main.js"></script>
+	<style>
+	html { overflow: hidden; }
+	body { 
+		font: 14pt Arial, sans-serif; 
+		background: lightgrey;
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+		width: 100%;
+		margin: 0 0;
+	}
+	#record {
+		height: 30vh;
+		margin: auto;
+	}
+	#record.recording { 
+		background: red;
+		background: -webkit-radial-gradient(center, ellipse cover, #ff0000 0%,lightgrey 75%,lightgrey 100%,#7db9e8 100%); 
+		background: -moz-radial-gradient(center, ellipse cover, #ff0000 0%,lightgrey 75%,lightgrey 100%,#7db9e8 100%); 
+		background: radial-gradient(center, ellipse cover, #ff0000 0%,lightgrey 75%,lightgrey 100%,#7db9e8 100%); 
+	}
+
+	@media (orientation: landscape) {
+		body { flex-direction: row;}
+	}
+
+	</style>
+</head>
+<body>
+	<img id="record" src="img/mic128.png" onmousedown="toggleRecording(this);" onmouseup="toggleRecording(this);">
+</body>
+</html>
